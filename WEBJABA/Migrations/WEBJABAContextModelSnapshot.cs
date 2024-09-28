@@ -210,8 +210,8 @@ namespace WEBJABA.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Photos")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("Photos")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 

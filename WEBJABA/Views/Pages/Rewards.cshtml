@@ -1,0 +1,391 @@
+﻿@{
+    ViewData["Title"] = "Rewards";
+}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Klei Account</title>
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta
+      http-equiv="cache-control"
+      content="no-cache, no-store, must-revalidate"
+    />
+
+    <meta
+      name="google-site-verification"
+      content="OyczyTu3Xu8GQqyxiJc7tzat52hpnBfhsY6nH1kBke8"
+    />
+    <link href="~/customcss/grid12.css" rel="stylesheet" />
+    <link href="~/customcss/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="grid12.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style id="gridman-extension-fonts">
+      font-face {
+        font-display: auto;
+        font-family: "SF Pro Display";
+        font-style: normal;
+        font-weight: 500;
+        src: url("chrome-extension://cmplbmppmfboedgkkelpkfgaakabpicn/fonts/SF-Pro-Display-Regular.ttf")
+          format("truetype");
+      }
+    </style>
+    <object
+      class="chrome-extension://jffafkigfgmjafhpkoibhfefeaebmccg/"
+      style="display: none; visibility: hidden"
+    ></object>
+    <link rel="shortcut icon" href="favicon.ico" />
+  </head>
+
+  <body>
+    <div id="loading" class="hidden">
+      <<img src="~/img/loading.gif" alt="Loading…" />
+    </div>
+
+    <div id="kleiapp" class="page account-rewards-page">
+
+      <div class="container content">
+        <!---->
+        <!---->
+        <!---->
+        <input
+          type="hidden"
+          name="csrfToken"
+          value="NaaE4d2CXO0hhQ2St6"
+          id="csrfToken"
+        />
+        <!---->
+        <div class="panel rewards-panel secondary">
+          <div class="row">
+            <div class="header-block col-md-12">
+              <h1 class="title">Дропи та нагороди (Бета)</h1>
+              <p>
+                Будьте в курсі та отримуйте внутрішньоігрові винагороди. Час від
+                часу ми додаватимемо нові нагороди, тому заходьте частіше, щоб
+                дізнатися, що нового! Використовуйте бали, щоб викупати
+                предмети, перелічені на сторінці нижче. Котушки корисні у грі.
+              </p>
+            </div>
+          </div>
+          <div class="currency-block">
+            <div class="currency-single KLEI_POINTS">
+              <!---->
+              <div class="label">Kubik koin</div>
+              <div class="icon KLEI_POINTS"></div>
+              <div class="text">
+                <!---->
+                <div class="value">4600</div>
+              </div>
+            </div>
+            <div class="currency-single SPOOLS">
+              <!---->
+              <div class="label">Spools</div>
+              <div class="icon SPOOLS"></div>
+              <div class="text">
+                <!---->
+                <div class="value">1060</div>
+              </div>
+            </div>
+            <div class="currency-single BOLTS">
+              <!---->
+              <div class="label">
+                <div class="platform-badge xbox"></div>
+                <div class="platform-badge psn"></div>
+                Bolts of Cloth
+              </div>
+              <div class="icon BOLTS"></div>
+              <div class="text">
+                <!---->
+                <div class="value">0</div>
+              </div>
+            </div>
+            <div class="currency-single BOLTS_SWITCH">
+              <!---->
+              <div class="label">
+                <div class="platform-badge nintendo"></div>
+                Bolts of Cloth
+              </div>
+              <div class="icon BOLTS_SWITCH"></div>
+              <div class="text">
+                <!---->
+                <div class="value">0</div>
+              </div>
+            </div>
+            <div class="currency-single FILAMENT">
+              <!---->
+              <div class="label">Filament</div>
+              <div class="icon FILAMENT"></div>
+              <div class="text">
+                <!---->
+                <div class="value">0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---->
+        
+        <div class="panel secondary thanks-for-signing-up">
+          <div class="row">
+            <div class="col-md-8 left-side">
+              <p>
+                Thanks for signing up! Feel free to follow us on
+                <a
+                  href="https://www.facebook.com/kleientertainment/"
+                  target="_blank"
+                  >Facebook</a
+                >,
+                <a href="https://twitter.com/klei" target="_blank">Twitter</a>
+                and
+                <a
+                  href="https://www.instagram.com/kleientertainment/"
+                  target="_blank"
+                  >Instagram</a
+                >.
+              </p>
+            </div>
+            <div class="col-md-4 right-side">
+              <p><span class="status-success"> Успішно отримано! </span></p>
+            </div>
+          </div>
+        </div>
+        <div class="panel code-redeem">
+          <div class="row">
+            <div class="col-md-4 left-side">
+              <div class="panel-illustration background">
+                <div class="gift-box"></div>
+              </div>
+            </div>
+            <div class="col-md-8 right-side details">
+              <h2 class="panel-title">Redeem a Gift Code</h2>
+              <p>
+                If you have an item key or gift code, you can redeem it below.
+              </p>
+              <a href="https://accounts.klei.com/account/gift" class="btn">
+                Redeem Code
+              </a>
+            </div>
+          </div>
+        </div>
+        <!---->
+        <div class="filters-and-pagination">
+          <div class="game-filters">
+            <div data-game="DST" class="game-filter-btn game-dst toggled">
+              <img src="~/img/game-info-DontStarveTogether.png" />GUN and RUN
+            </div>
+
+          <div class="reward-filters">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Фільтрувати за:</span>
+              </div>
+              <select class="form-control">
+                <option value="all" selected="selected">All Items</option>
+                <option value="owned_items">Owned items</option>
+                <option value="not_owned_items">Not owned items</option>
+                <option value="regular_items">Regular items</option>
+                <option value="portrait_items">Portrait items</option>
+                <option value="profile_flair_items">Profile flair items</option>
+                <option value="colouring_pages">Colouring pages</option>
+                <option value="pumpkin_stencils">Pumpkin Stencils</option>
+                <option value="video_background">Video Background</option>
+                <option value="posters">Posters</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="rewards-deck">
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>4000</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+                    <div class="card-body"><img src="~/img/dragonflychest_kraken_66210343dfebe5a7.png" /></div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection"></span>
+                <h1 class="card-title">
+                                mystery box
+                </h1>
+                <!---->
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>1200</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+            <div class="card-body">
+              <img src="~/img/ruinshat_an_3fa3259616301ed4.png" />
+            </div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection">Art Nouveau Collection</span>
+                <h1 class="card-title">Nouveau Headpiece</h1>
+                <span class="reskins">Reskins: Thulecite Crown</span>
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>1200</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+            <div class="card-body">
+              <img src="~/img/wall_stone_ancient_alt_786aeee3f48eae8d.png" />
+            </div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection">General Collection</span>
+                <h1 class="card-title">Ancient Stone Wall</h1>
+                <span class="reskins">Reskins: Stone Wall</span>
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>1200</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+            <div class="card-body">
+              <img src="~/img/winterhat_fancy_puppyalt_ee380491ebdebb55.png" />
+            </div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection">Year of the Varg Collection</span>
+                <h1 class="card-title">Knitted Puppy Hat</h1>
+                <span class="reskins">Reskins: Winter Hat</span>
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>1200</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+            <div class="card-body">
+              <img src="~/img/dragonflychest_kraken_66210343dfebe5a7.png" />
+            </div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection">Nautical Collection</span>
+                <h1 class="card-title">Leviathan Chest</h1>
+                <span class="reskins">Reskins: Scaled Chest</span>
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>1200</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+            <div class="card-body">
+              <img src="~/img/fishbox_nautical_f918a6a0284aad4f.png" />
+            </div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection">Nautical Collection</span>
+                <h1 class="card-title">Silver Tuna Tin</h1>
+                <span class="reskins">Reskins: Tin Fishin' Bin</span>
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+          <div class="card reward">
+            <div class="card-header">
+              <div class="game-info wide game-icon DST-icon"></div>
+              <div class="cost-info">
+                <span class="label">Вартість предмета</span>
+                <span class="value points"
+                  ><span>1200</span><span class="icon"></span
+                ></span>
+              </div>
+              <!---->
+            </div>
+            <div class="card-body">
+              <img src="~/img/anchor_nautical_ce22c243c323f769.png" />
+            </div>
+            <div class="card-footer">
+              <div class="item-info">
+                <span class="collection">Nautical Collection</span>
+                <h1 class="card-title">Rusty Anchor</h1>
+                <span class="reskins">Reskins: Anchor</span>
+              </div>
+              <!---->
+              <!---->
+              <a href="#" class="btn btn-block">Викупити</a>
+              <!---->
+            </div>
+          </div>
+
+        </div>
+        <!---->
+        <!---->
+      </div>
+
+    </div>
+
+
+  </body>
+</html>
