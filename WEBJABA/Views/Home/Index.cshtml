@@ -1,0 +1,273 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+    <div id="menu">
+      <button id="playButton">Грати</button>
+    </div>
+    <canvas id="gameCanvas" style="display: none"></canvas>
+
+    <script src="game.js"></script>
+<style>
+
+    #gameCanvas {
+        display: none; /* Спочатку ховаємо гру */
+    }
+
+    #menu {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 100%;
+    }
+
+    #playButton {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+        #playButton:hover {
+            background-color: #218838;
+        }
+</style>
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const player = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 20,
+        speed: 5,
+        bullets: [],
+        cooldown: 0,
+        currentWeapon: "pistol",
+    };
+
+    const weapons = {
+        pistol: { cooldown: 20, bulletsPerShot: 1, spread: 0 },
+        auto: { cooldown: 5, bulletsPerShot: 1, spread: 0 },
+        shotgun: { cooldown: 30, bulletsPerShot: 5, spread: 0.2 },
+    };
+
+    const enemies = [];
+    const enemySpawnRate = 100;
+    let enemyCooldown = 0;
+    const weaponsOnField = [];
+    let keys = {};
+    let mousePos = { x: 0, y: 0 };
+
+    // Додаємо кнопку для старту гри
+    document.getElementById("playButton").addEventListener("click", startGame);
+
+    // Почати гру: ховаємо меню, показуємо canvas, запускаємо цикл гри
+    function startGame() {
+        document.getElementById("menu").style.display = "none"; // Ховаємо меню
+        canvas.style.display = "block"; // Показуємо поле гри
+        gameLoop(); // Запускаємо основний цикл гри
+    }
+
+    // Слухачі подій
+    window.addEventListener("keydown", (e) => (keys[e.key] = true));
+    window.addEventListener("keyup", (e) => (keys[e.key] = false));
+    canvas.addEventListener("click", shoot);
+    canvas.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mousePos = {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top,
+        };
+    });
+
+    // Оновлення гри
+    function update() {
+        movePlayer();
+        updateBullets();
+        spawnEnemies();
+        updateEnemies();
+        checkCollisions();
+        updateWeaponsOnField();
+
+        if (player.cooldown > 0) player.cooldown--;
+    }
+
+    // Малювання елементів
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Малюємо гравця
+        ctx.fillStyle = "blue";
+        ctx.beginPath();
+        ctx.arc(player.x, player.y, player.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Малюємо кулі
+        player.bullets.forEach((bullet) => {
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            ctx.arc(bullet.x, bullet.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Малюємо ворогів
+        enemies.forEach((enemy) => {
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.arc(enemy.x, enemy.y, enemy.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Малюємо зброю, яка випала
+        weaponsOnField.forEach((weapon) => {
+            ctx.fillStyle = "green";
+            ctx.fillRect(weapon.x, weapon.y, 20, 20); // Малюємо квадрат як символ зброї
+        });
+    }
+
+    // Рух гравця
+    function movePlayer() {
+        if (keys["ArrowUp"] || keys["w"]) player.y -= player.speed;
+        if (keys["ArrowDown"] || keys["s"]) player.y += player.speed;
+        if (keys["ArrowLeft"] || keys["a"]) player.x -= player.speed;
+        if (keys["ArrowRight"] || keys["d"]) player.x += player.speed;
+
+        player.x = Math.max(
+            player.radius,
+            Math.min(canvas.width - player.radius, player.x)
+        );
+        player.y = Math.max(
+            player.radius,
+            Math.min(canvas.height - player.radius, player.y)
+        );
+    }
+
+    // Стрілянина
+    function shoot() {
+        const weapon = weapons[player.currentWeapon];
+        if (player.cooldown === 0) {
+            for (let i = 0; i < weapon.bulletsPerShot; i++) {
+                const angle =
+                    Math.atan2(mousePos.y - player.y, mousePos.x - player.x) +
+                    (Math.random() * weapon.spread - weapon.spread / 2);
+                const bullet = {
+                    x: player.x,
+                    y: player.y,
+                    dx: Math.cos(angle) * 10,
+                    dy: Math.sin(angle) * 10,
+                };
+                player.bullets.push(bullet);
+            }
+            player.cooldown = weapon.cooldown;
+        }
+    }
+
+    // Оновлення кулі
+    function updateBullets() {
+        player.bullets.forEach((bullet, index) => {
+            bullet.x += bullet.dx;
+            bullet.y += bullet.dy;
+
+            if (
+                bullet.x < 0 ||
+                bullet.x > canvas.width ||
+                bullet.y < 0 ||
+                bullet.y > canvas.height
+            ) {
+                player.bullets.splice(index, 1);
+            }
+        });
+    }
+
+    // Спавн ворогів
+    function spawnEnemies() {
+        if (enemyCooldown === 0) {
+            const enemy = {
+                x: Math.random() * canvas.width,
+                y: 0,
+                radius: 15,
+                speed: 2,
+            };
+            enemies.push(enemy);
+            enemyCooldown = enemySpawnRate;
+        }
+        enemyCooldown--;
+    }
+
+    // Оновлення ворогів
+    function updateEnemies() {
+        enemies.forEach((enemy, index) => {
+            const angle = Math.atan2(player.y - enemy.y, player.x - enemy.x);
+            enemy.x += Math.cos(angle) * enemy.speed;
+            enemy.y += Math.sin(angle) * enemy.speed;
+
+            if (
+                Math.hypot(enemy.x - player.x, enemy.y - player.y) <
+                player.radius + enemy.radius
+            ) {
+                alert("Game Over!");
+                document.location.reload();
+            }
+        });
+    }
+
+    // Перевірка зіткнень
+    function checkCollisions() {
+        player.bullets.forEach((bullet, bIndex) => {
+            enemies.forEach((enemy, eIndex) => {
+                if (
+                    Math.hypot(bullet.x - enemy.x, bullet.y - enemy.y) <
+                    enemy.radius + 5
+                ) {
+                    player.bullets.splice(bIndex, 1);
+                    enemies.splice(eIndex, 1);
+
+                    // Є ймовірність (20%) що з ворога випаде зброя
+                    if (Math.random() < 0.2) {
+                        dropWeapon(enemy.x, enemy.y);
+                    }
+                }
+            });
+        });
+    }
+
+    // Випадіння зброї
+    function dropWeapon(x, y) {
+        const weaponType = Math.random() < 0.5 ? "auto" : "shotgun"; // 50% на автомат або дробовик
+        weaponsOnField.push({ x: x, y: y, type: weaponType });
+    }
+
+    // Оновлення зброї на полі
+    function updateWeaponsOnField() {
+        weaponsOnField.forEach((weapon, index) => {
+            if (
+                Math.hypot(player.x - weapon.x, player.y - weapon.y) <
+                player.radius + 10
+            ) {
+                player.currentWeapon = weapon.type; // Гравець підбирає зброю
+                weaponsOnField.splice(index, 1); // Видаляємо зброю з поля
+                console.log("Picked up weapon: ", weapon.type);
+            }
+        });
+    }
+
+    // Основний цикл гри
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
+
+
+</script>
