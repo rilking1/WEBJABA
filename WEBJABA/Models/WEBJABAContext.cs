@@ -5,7 +5,7 @@ using System.Data;
 using Microsoft.EntityFrameworkCore;
 namespace WEBJABA.Models;
 
-public partial class WEBJABAContext : IdentityDbContext<User>
+public class WEBJABAContext : IdentityDbContext<User>
 {
     public WEBJABAContext()
     {

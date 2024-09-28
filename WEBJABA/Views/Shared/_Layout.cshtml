@@ -26,6 +26,20 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <p>@User.Identity.Name</p>
+
+                        <form method="post" asp-controller="Account" asp-action="Logout">
+                            <input type="submit" value="Вихід" />
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="text-dark" asp-controller="Account" asp-action="Login" style="text-decoration: none; margin-right: 5px;">Вхід</a>
+
+                        <a class="text-dark" asp-controller="Account" asp-action="Register" style="text-decoration: none;">Реєстація</a>
+                    }
                 </div>
             </div>
         </nav>
