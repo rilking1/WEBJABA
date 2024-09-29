@@ -7,14 +7,17 @@ using System.Data;
 using WEBJABA.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddAuthorization();
+
+
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultAuthenticateScheme = GoogleDefaults.AuthenticationScheme;
 })
+
+
     .AddCookie()
     .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
     {
@@ -22,7 +25,7 @@ builder.Services.AddAuthentication(options =>
         options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
     });
 
-
+builder.Services.AddScoped<AzureBlobService>(); ;
 
 builder.Services.AddDbContext<WEBJABAContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -32,13 +35,16 @@ builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<WEBJ
 
 builder.Services.AddControllersWithViews();
 
+
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+
     app.UseHsts();
 }
 

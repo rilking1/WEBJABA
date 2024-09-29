@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WEBJABA.Models;
 
@@ -11,9 +12,11 @@ using WEBJABA.Models;
 namespace WEBJABA.Migrations
 {
     [DbContext(typeof(WEBJABAContext))]
-    partial class WEBJABAContextModelSnapshot : ModelSnapshot
+    [Migration("20240928230638_change-photo-type3")]
+    partial class changephototype3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

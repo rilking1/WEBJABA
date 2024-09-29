@@ -7,7 +7,7 @@ public partial class Photo
 {
     public int Id { get; set; }
 
-    public byte[]? Photos { get; set; }
+    public string? Photos { get; set; }
 
     public virtual ICollection<Skin> Skins { get; set; } = new List<Skin>();
 

@@ -4,11 +4,11 @@ using WEBJABA.Models;
 
 namespace WEBJABA.Controllers
 {
-    public class PagesController : Controller
+    public class RewardsController : Controller
     {
-        private readonly ILogger<PagesController> _logger;
+        private readonly ILogger<RewardsController> _logger;
 
-        public PagesController(ILogger<PagesController> logger)
+        public RewardsController(ILogger<RewardsController> logger)
         {
             _logger = logger;
         }
@@ -18,7 +18,7 @@ namespace WEBJABA.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult UserProfile()
         {
             return View();
         }
