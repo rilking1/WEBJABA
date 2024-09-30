@@ -34,6 +34,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Інвентар</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Рейтинг</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Rewards" asp-action="Rewards">Транзакції</a>
                         </li>
                         <li class="nav-item">
@@ -49,9 +52,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li> *@
                     </ul>
+                    @if (User.IsInRole("admin"))
+                    {
+                    <a class="btn" style="margin-right:10px; color:black;" href="@Url.Action("Index", "AdminPanel")">  
+                                Адмін панель
+                    </a>
+                    }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <p>@User.Identity.Name</p>
+                        <span style="margin-right:10px; color:black;">@User.Identity.Name</span>
 
                         <form method="post" asp-controller="Account" asp-action="Logout">
                             <input type="submit" value="Вихід" />

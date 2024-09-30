@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel 🛠️";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Admin Panel</h1>
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://i.postimg.cc/NFbrswKQ/3-F3-F3-F3-F-3-F3-F3-F3-F-3-F3-F29.webp" class="card-img-top" alt="Home">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Inventories" asp-action="Index">
+                        <p>Inventories</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://cdn.rewards.show/images/logo-reward.png" class="card-img-top" alt="Privacy">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Rewards" asp-action="Rewards">
+                        <p>Rewards</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmCEAlTDLbkNv0HjYG7yhEJveM6qAoui8gqw&s" class="card-img-top" alt="Bookings">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">
+                        <p>Roles</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://thebackdashadmin.com/wp-content/uploads/2024/07/The-First-Descendant-Lepic-Free-Skin.jpg" class="card-img-top" alt="Hotels">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Skins" asp-action="Index">
+                        <p>Skins</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1569693955641-49eb01ead048?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Photos">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Photos" asp-action="Index">
+                        <p>Photos</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://media.architecturaldigest.com/photos/58f918044f42bd463db36a3f/master/pass/1%20-%2010%20Greenest%20Cities%20in%20America%20in%202017.jpg" class="card-img-top" alt="Ratings">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Rating" asp-action="Index">
+                        <p>Rating</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="https://media.architecturaldigest.com/photos/58f918044f42bd463db36a3f/master/pass/1%20-%2010%20Greenest%20Cities%20in%20America%20in%202017.jpg" class="card-img-top" alt="Ratings">
+                <div class="card-body text-center">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Rating" asp-action="Index">
+                        <p>Players</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h2 class="mb-4">Statistics</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Bookings</h5>
+                    <p class="card-text display-4">12</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Hotels</h5>
+                    <p class="card-text display-4">10</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Rooms</h5>
+                    <p class="card-text display-4">23</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<head>
+    <!-- Other meta tags and links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-MpVwA0EftB1HR/0u0SH8Xz1z8QYV9vGOiFqKrgzm2uWx8f05/tG/pKtM5K/7RMa3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-1E3e6u7d0FhqLY1KRL0T0ksvKksk8D4yMevl+3aAftbcaJzDz2eRrT2EN5cQmLsX" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
